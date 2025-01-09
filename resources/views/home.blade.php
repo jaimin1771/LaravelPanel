@@ -17,8 +17,8 @@
                     <img src="{{ asset('assets/home_page_img/360logo.png') }}" alt="Logo" class="max-w-full h-auto">
                 </div>
                 <div class="flex space-x-4">
-                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium">Login</a>
-                    <a href="" class="text-gray-700 hover:text-blue-600 font-medium">Sign In</a>
+                    <a href="{{ route('login') }}" class="text-gray-700 hover:text-blue-600 font-medium">Login</a>
+                    <a href="{{ route('signin') }}" class="text-gray-700 hover:text-blue-600 font-medium">Sign In</a>
                 </div>
             </div>
         </nav>

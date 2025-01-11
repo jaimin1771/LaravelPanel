@@ -10,8 +10,12 @@ class LoginController extends Controller
 {
 
     public function index()
-    {
+    {if (!Auth::check()) {
         return view('login');
+        }
+        else {
+            return redirect()->intended('dashboard');
+        }
     }
 
     public function authenticate(Request $request): RedirectResponse

@@ -13,7 +13,11 @@ class SingInController extends Controller
      */
     public function index()
     {
-        return view("signin");
+        if (!Auth::check()) {
+            return view("signin");
+        } else {
+            return redirect()->intended('dashboard');
+        }
     }
 
     /**

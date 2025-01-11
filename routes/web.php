@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\forgot_passwordController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\DashboardhomeController;
 
 Route::get('/', [HomePageController::class, 'index'])->name('Index');
 Route::get('/signin', [SingInController::class, 'index'])->name('signin');
@@ -16,3 +17,4 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/authenticate', [LoginController::class, 'authenticate'])->name('authenticate');
 Route::get('/forgot_password', [forgot_passwordController::class, 'index'])->name('forgot');
 Route::get('/logout', [LogoutController::class, 'index'])->name('logout');
+Route::get('/home', [DashboardhomeController::class, 'index'])->name('home');

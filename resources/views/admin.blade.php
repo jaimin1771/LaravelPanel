@@ -21,22 +21,24 @@
 
     <!-- Section Content -->
     <div id="section-details" class="tab-content">
-        <form id="updateForm" action="/update-index" method="POST" enctype="multipart/form-data" class="space-y-6">
-            <!-- Hidden ID -->
-            <input type="hidden" name="id" id="id" value="1">
-
-            <!-- Section Name -->
+        <form id="updateForm" action="{{route('update')}}" method="POST" enctype="multipart/form-data" class="space-y-6">
+            <div>
+                <label for="id" class="text-sm font-medium text-gray-700 hidden">Id</label>
+                <input type="id" id="section_name" name="id"
+                    class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Enter section name" value="1" readonly>
+            </div>
             <div>
                 <label for="section_name" class="block text-sm font-medium text-gray-700">Section Name</label>
                 <input type="text" id="section_name" name="section_name"
                     class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter section name" value="section-details-one">
+                    placeholder="Enter section name" value="section-details-one" readonly>
             </div>
 
             <!-- Title -->
             <div>
                 <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
-                <input type="text" id="title" name="title"
+                <input type="text" id="lable" name="lable"
                     class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Enter title" value="Example Title">
             </div>
@@ -44,7 +46,7 @@
             <!-- Content -->
             <div>
                 <label for="content" class="block text-sm font-medium text-gray-700">Content</label>
-                <textarea id="content" name="content" rows="5"
+                <textarea id="details" name="details" rows="5"
                     class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Enter content">Example Content</textarea>
             </div>
@@ -52,7 +54,7 @@
             <!-- Picture -->
             <div>
                 <label for="picture" class="block text-sm font-medium text-gray-700">Picture</label>
-                <input type="file" id="picture" name="picture" accept="image/*"
+                <input type="file" id="value" name="value" accept="image/*"
                     class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:border file:rounded-md file:border-blue-500 file:text-blue-500 hover:file:bg-blue-50"
                     onchange="previewImage()">
             </div>
@@ -84,7 +86,7 @@
                 <label for="section_name" class="block text-sm font-medium text-gray-700">Section Name</label>
                 <input type="text" id="section_name" name="section_name"
                     class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter section name" value="section-details-two">
+                    placeholder="Enter section name" value="section-details-two" readonly>
             </div>
 
             <!-- Title -->
@@ -131,14 +133,13 @@
     <div id="preview" class="tab-content hidden">
         <form id="updateForm" action="/update-index" method="POST" enctype="multipart/form-data" class="space-y-6">
             <!-- Hidden ID -->
-            <input type="hidden" name="id" id="id" value="1">
 
             <!-- Section Name -->
             <div>
                 <label for="section_name" class="block text-sm font-medium text-gray-700">Section Name</label>
                 <input type="text" id="section_name" name="section_name"
                     class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter section name" value="section-details-three">
+                    placeholder="Enter section name" value="section-details-three" readonly>
             </div>
 
             <!-- Title -->

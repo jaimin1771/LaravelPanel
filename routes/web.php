@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\forgot_passwordController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\DashboardhomeController;
+use App\Http\Controllers\UpdateDataController;
 
 Route::get('/', [HomePageController::class, 'index'])->name('Index');
 Route::get('/signin', [SingInController::class, 'index'])->name('signin');
@@ -18,3 +19,4 @@ Route::get('/authenticate', [LoginController::class, 'authenticate'])->name('aut
 Route::get('/forgot_password', [forgot_passwordController::class, 'index'])->name('forgot');
 Route::get('/logout', [LogoutController::class, 'index'])->name('logout');
 Route::get('/home', [DashboardhomeController::class, 'index'])->name('home');
+Route::post('/update/{id}', [UpdateDataController::class, 'update'])->name('update');

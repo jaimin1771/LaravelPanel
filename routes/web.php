@@ -19,4 +19,4 @@ Route::get('/authenticate', [LoginController::class, 'authenticate'])->name('aut
 Route::get('/forgot_password', [forgot_passwordController::class, 'index'])->name('forgot');
 Route::get('/logout', [LogoutController::class, 'index'])->name('logout');
 Route::get('/home', [DashboardhomeController::class, 'index'])->name('home');
-Route::post('/update/{id}', [UpdateDataController::class, 'update'])->name('update');
+Route::post('/update', [UpdateDataController::class, 'update'])->name('data.update');

@@ -7,24 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class IndexPage extends Model
 {
-    use HasFactory;
-
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'indexpage';
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
+        protected $fillable = [
         'id',
         'section_name',
-        'label',
+        'lable',
         'value',
+        'details'
     ];
 }

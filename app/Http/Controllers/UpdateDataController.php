@@ -8,7 +8,8 @@ class UpdateDataController extends Controller
 {
     public function update(Request $request, $id)
     {
-        $data = IndexPage::where('id', $id)->firstOrFail();
+        // Find the specific record by ID or throw a 404 exception
+        $data = IndexPage::findOrFail($id);
 
         $validatedData = $request->validate([
             'label' => 'required|string|max:255',

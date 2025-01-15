@@ -21,13 +21,9 @@
 
     <!-- Section Content -->
     <div id="section-details" class="tab-content">
-        <form id="updateForm" action="{{route('update')}}" method="POST" enctype="multipart/form-data" class="space-y-6">
-            <div>
-                <label for="id" class="text-sm font-medium text-gray-700 hidden">Id</label>
-                <input type="id" id="section_name" name="id"
-                    class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter section name" value="1" readonly>
-            </div>
+        <form id="updateForm" action="{{ route('data.update')}}" method="POST" class="space-y-6">
+             @csrf
+            
             <div>
                 <label for="section_name" class="block text-sm font-medium text-gray-700">Section Name</label>
                 <input type="text" id="section_name" name="section_name"
@@ -213,6 +209,17 @@
         document.getElementById('previewTitle').textContent = document.getElementById('title').value;
         document.getElementById('previewContent').textContent = document.getElementById('content').value;
     }
+    $.ajax({
+    url: '/update/' + id, // Pass the ID here
+    type: 'POST',
+    data: {
+        // Your data here
+    },
+    success: function(response) {
+        console.log(response);
+    }
+});
+
 
     document.getElementById('title').addEventListener('input', updatePreview);
     document.getElementById('content').addEventListener('input', updatePreview);

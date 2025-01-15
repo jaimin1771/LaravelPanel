@@ -28,16 +28,32 @@
         </nav>
 
         <section class="flex flex-col md:flex-row items-center justify-center px-10 md:px-3 py-10 space-y-8 lg:space-y-0 lg:space-x-8">
-            <div class="xl:w-[34%] sm:w-[40%]  w-full">
+            <div class="xl:w-[34%] sm:w-[40%] w-full">
                 <img src="{{ asset('assets/home_page_img/img.avif') }}" alt="Hero Image" class="w-full rounded-lg shadow-lg">
             </div>
             <div class="w-full md:w-[50%] flex flex-col md:items-start items-center space-y-4 m-0 md:m-[5%]">
-                <h1 class="text-3xl lg:text-4xl font-bold text-gray-800">Start Your QR Journey with us</h1>
-                <p class="text-lg text-gray-600">
-                    Discover the world of seamless connections with a single scan. Whether it’s accessing websites, sharing contact details, or unlocking exclusive content, our QR scanner makes it quick, secure, and effortless. Begin your journey today and experience the power of instant access!
-                </p>
+                @if($data->isEmpty())
+                    <p>No data found.</p>
+                @else
+                    <h1 class="text-3xl lg:text-4xl font-bold text-gray-800">{{ $data[1]->value }}</h1>
+                    <p class="text-lg text-gray-600">{{ $data[2]->value }}</p>
+                @endif
             </div>
         </section>
+        <section class="flex flex-col md:flex-row items-center justify-center px-10 md:px-3 py-10 space-y-8 lg:space-y-0 lg:space-x-8">
+            <div class="w-full md:w-[50%] flex flex-col md:items-start items-center space-y-4 m-0 md:m-[5%]">
+                @if($data->isEmpty())
+                    <p>No data found.</p>
+                @else
+                    <h1 class="text-3xl lg:text-4xl font-bold text-gray-800">{{ $data[4]->value }}</h1>
+                    <p class="text-lg text-gray-600">{{ $data[5]->value }}</p>
+                @endif
+            </div>
+            <div class="xl:w-[34%] sm:w-[40%] w-full">
+                <img src="{{ asset('assets/home_page_img/img.avif') }}" alt="Hero Image" class="w-full rounded-lg shadow-lg">
+            </div>
+        </section>
+        
     </div>
 </body>
 

@@ -10,7 +10,7 @@ class DashBoardMiddleware
     public function handle(Request $request, Closure $next)
     {
         if (!$request->user() || !$request->user()->hasRole('dashboard_access')) {
-            return redirect('/login'); // Redirect if the user doesn't have access
+            return redirect('/login');
         }
 
         return $next($request);

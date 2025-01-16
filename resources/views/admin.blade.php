@@ -28,7 +28,7 @@
                 <label for="section_name" class="block text-sm font-medium text-gray-700">Section Name</label>
                 <input type="text" id="section_name" name="section_name"
                     class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter section name" value="section-details-one" readonly>
+                    placeholder="{{ $data[2]->value }}" value="{{ $data[1]->section_name }}" readonly>
             </div>
 
             <!-- Title -->
@@ -36,7 +36,7 @@
                 <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
                 <input type="text" id="lable" name="lable"
                     class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter title" value="Example Title">
+                    placeholder="Enter title" value="{{ $data[1]->value }}">
             </div>
 
             <!-- Content -->
@@ -44,7 +44,7 @@
                 <label for="content" class="block text-sm font-medium text-gray-700">Content</label>
                 <textarea id="details" name="details" rows="5"
                     class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter content">Example Content</textarea>
+                    placeholder="Enter content">{{ $data[2]->value }}</textarea>
             </div>
 
             <!-- Picture -->
@@ -57,8 +57,8 @@
 
             <!-- Preview Area -->
             <h2 class="text-xl font-semibold text-gray-700 mb-4">Preview</h2>
-            <img id="picturePreview" class="w-full h-96 object-cover rounded-md border border-gray-300"
-                src="https://via.placeholder.com/800x600" alt="Picture Preview">
+            <img id="img" class="w-full h-96 object-cover rounded-md border border-gray-300"
+                src="{{ $data[0]->value }}" alt="Picture Preview">
             <div class="mt-4">
                 
             </div>
@@ -73,110 +73,107 @@
     </div>
 
     <div id="media" class="tab-content hidden">
-        <form id="updateForm" action="/update-index" method="POST" enctype="multipart/form-data" class="space-y-6">
-            <!-- Hidden ID -->
-            <input type="hidden" name="id" id="id" value="1">
+        <form id="updateForm" action="{{ route('data.update')}}" method="POST" class="space-y-6">
+            @csrf
+           
+           <div>
+               <label for="section_name" class="block text-sm font-medium text-gray-700">Section Name</label>
+               <input type="text" id="section_name" name="section_name"
+                   class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
+                   placeholder="{{ $data[2]->value }}" value="{{ $data[3]->section_name }}" readonly>
+           </div>
 
-            <!-- Section Name -->
-            <div>
-                <label for="section_name" class="block text-sm font-medium text-gray-700">Section Name</label>
-                <input type="text" id="section_name" name="section_name"
-                    class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter section name" value="section-details-two" readonly>
-            </div>
+           <!-- Title -->
+           <div>
+               <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
+               <input type="text" id="lable" name="lable"
+                   class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
+                   placeholder="Enter title" value="{{ $data[4]->value }}">
+           </div>
 
-            <!-- Title -->
-            <div>
-                <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
-                <input type="text" id="title" name="title"
-                    class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter title" value="Example Title">
-            </div>
+           <!-- Content -->
+           <div>
+               <label for="content" class="block text-sm font-medium text-gray-700">Content</label>
+               <textarea id="details" name="details" rows="5"
+                   class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
+                   placeholder="Enter content">{{ $data[5]->value }}</textarea>
+           </div>
 
-            <!-- Content -->
-            <div>
-                <label for="content" class="block text-sm font-medium text-gray-700">Content</label>
-                <textarea id="content" name="content" rows="5"
-                    class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter content">Example Content</textarea>
-            </div>
+           <!-- Picture -->
+           <div>
+               <label for="picture" class="block text-sm font-medium text-gray-700">Picture</label>
+               <input type="file" id="value" name="value" accept="image/*"
+                   class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:border file:rounded-md file:border-blue-500 file:text-blue-500 hover:file:bg-blue-50"
+                   onchange="previewImage()">
+           </div>
 
-            <!-- Picture -->
-            <div>
-                <label for="picture" class="block text-sm font-medium text-gray-700">Picture</label>
-                <input type="file" id="picture" name="picture" accept="image/*"
-                    class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:border file:rounded-md file:border-blue-500 file:text-blue-500 hover:file:bg-blue-50"
-                    onchange="previewImage()">
-            </div>
+           <!-- Preview Area -->
+           <h2 class="text-xl font-semibold text-gray-700 mb-4">Preview</h2>
+           <img id="img" class="w-full h-96 object-cover rounded-md border border-gray-300"
+               src="{{ $data[3]->value }}" alt="Picture Preview">
+           <div class="mt-4">
+               
+           </div>
 
-            <!-- Preview Area -->
-            <h2 class="text-xl font-semibold text-gray-700 mb-4">Preview</h2>
-            <img id="picturePreview" class="w-full h-96 object-cover rounded-md border border-gray-300"
-                src="https://via.placeholder.com/800x600" alt="Picture Preview">
-            <div class="mt-4">
-                
-            </div>
-
-            <!-- Update Button -->
-            <div class="flex justify-end">
-                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
-                    Update
-                </button>
-            </div>
-        </form>
+           <!-- Update Button -->
+           <div class="flex justify-end">
+               <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                   Update
+               </button>
+           </div>
+       </form>
     </div>
 
     <div id="preview" class="tab-content hidden">
-        <form id="updateForm" action="/update-index" method="POST" enctype="multipart/form-data" class="space-y-6">
-            <!-- Hidden ID -->
+        <form id="updateForm" action="{{ route('data.update')}}" method="POST" class="space-y-6">
+            @csrf
+           
+           <div>
+               <label for="section_name" class="block text-sm font-medium text-gray-700">Section Name</label>
+               <input type="text" id="section_name" name="section_name"
+                   class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
+                   placeholder="" value="{{ $data[6]->section_name }}" readonly>
+           </div>
 
-            <!-- Section Name -->
-            <div>
-                <label for="section_name" class="block text-sm font-medium text-gray-700">Section Name</label>
-                <input type="text" id="section_name" name="section_name"
-                    class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter section name" value="section-details-three" readonly>
-            </div>
+           <!-- Title -->
+           <div>
+               <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
+               <input type="text" id="lable" name="lable"
+                   class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
+                   placeholder="Enter title" value="{{ $data[7]->value }}">
+           </div>
 
-            <!-- Title -->
-            <div>
-                <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
-                <input type="text" id="title" name="title"
-                    class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter title" value="Example Title">
-            </div>
+           <!-- Content -->
+           <div>
+               <label for="content" class="block text-sm font-medium text-gray-700">Content</label>
+               <textarea id="details" name="details" rows="5"
+                   class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
+                   placeholder="Enter content">{{ $data[8]->value }}</textarea>
+           </div>
 
-            <!-- Content -->
-            <div>
-                <label for="content" class="block text-sm font-medium text-gray-700">Content</label>
-                <textarea id="content" name="content" rows="5"
-                    class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter content">Example Content</textarea>
-            </div>
+           <!-- Picture -->
+           <div>
+               <label for="picture" class="block text-sm font-medium text-gray-700">Picture</label>
+               <input type="file" id="value" name="value" accept="image/*"
+                   class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:border file:rounded-md file:border-blue-500 file:text-blue-500 hover:file:bg-blue-50"
+                   onchange="previewImage()">
+           </div>
 
-            <!-- Picture -->
-            <div>
-                <label for="picture" class="block text-sm font-medium text-gray-700">Picture</label>
-                <input type="file" id="picture" name="picture" accept="image/*"
-                    class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:border file:rounded-md file:border-blue-500 file:text-blue-500 hover:file:bg-blue-50"
-                    onchange="previewImage()">
-            </div>
+           <!-- Preview Area -->
+           <h2 class="text-xl font-semibold text-gray-700 mb-4">Preview</h2>
+           <img id="img" class="w-full h-96 object-cover rounded-md border border-gray-300"
+               src="{{ $data[6]->value }}" alt="Picture Preview">
+           <div class="mt-4">
+               
+           </div>
 
-            <!-- Preview Area -->
-            <h2 class="text-xl font-semibold text-gray-700 mb-4">Preview</h2>
-            <img id="picturePreview" class="w-full h-96 object-cover rounded-md border border-gray-300"
-                src="https://via.placeholder.com/800x600" alt="Picture Preview">
-            <div class="mt-4">
-                
-            </div>
-
-            <!-- Update Button -->
-            <div class="flex justify-end">
-                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
-                    Update
-                </button>
-            </div>
-        </form>
+           <!-- Update Button -->
+           <div class="flex justify-end">
+               <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                   Update
+               </button>
+           </div>
+       </form>
     </div>
 </div>
 

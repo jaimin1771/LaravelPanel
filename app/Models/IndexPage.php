@@ -14,4 +14,5 @@ class IndexPage extends Model
         'value',
         'details'
     ];
+
 }

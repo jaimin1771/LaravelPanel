@@ -9,48 +9,56 @@ use Illuminate\Support\Facades\Log;
 class UpdateDataController extends Controller
 {
     public function update(Request $request)
-    {
-    
-        // Validate the request
+{
+    try {
+        // Validate input fields
         $validated = $request->validate([
-            'Section_pera' => 'nullable|string|max:1000',
             'Section_hedding' => 'nullable|string|max:255',
-            'Section_img' => 'nullable|image|mimes:jpg,png,jpeg,gif|max:3048',
+            'Section_pera' => 'nullable|string',
+            'Section_hedding_two' => 'nullable|string|max:255',
+            'Section_pera_two' => 'nullable|string',
+            'Section_hedding_three' => 'nullable|string|max:255',
+            'Section_pera_three' => 'nullable|string',
+            'Section_img' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048', // 2MB max
         ]);
-    
-        if (empty($validated)) {
-            return redirect()->back()->with('error', 'No data provided to update.');
+
+        // Loop through validated fields to update or create records
+        foreach ($validated as $key => $value) {
+            if (!empty($value) && $key !== 'Section_img') { // Skip the file field here
+                IndexPage::updateOrCreate(['lable' => $key], ['value' => $value]);
+            }
         }
-    
-        try {
-            // Update data
-            if (!empty($validated['Section_hedding'])) {
-                IndexPage::updateOrCreate(['lable' => 'Section_hedding'], ['value' => $validated['Section_hedding']]);
-            }
-    
-            if (!empty($validated['Section_pera'])) {
-                IndexPage::updateOrCreate(['lable' => 'Section_pera'], ['value' => $validated['Section_pera']]);
-            }
-    
-            if (!empty($validated['Section_img'])) {
-                // Store the uploaded image in the 'public' disk (e.g., storage/app/public)
-                $imagePath = $validated['Section_img']->store('assets/home_page_img', 'public');
+
+        // Process the banner image upload
+        if ($request->hasFile('Section_img')) {
+            $image = $request->file('Section_img');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+
+            $destinationPath = storage_path('app/private');
             
-                // Update or create the record in the database with the new image path
-                IndexPage::updateOrCreate(
-                    ['lable' => 'Section_img'], 
-                    ['value' => $imagePath]
-                );
+            // Ensure the directory exists
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
             }
-            
-            
-        
-            return redirect()->back()->with('success', 'Section updated successfully.');
-    
-        } catch (\Exception $e) {
-            dd($e->getMessage());
-            return redirect()->back()->with('error', 'Failed to update section. Please try again.');
+
+            // Move the uploaded file
+            $image->move($destinationPath, $imageName);
+
+            // Store the relative path in the database
+            $imagePath = 'storage/app/private/' . $imageName;
+            IndexPage::updateOrCreate(['lable' => 'Section_img'], ['value' => $imagePath]);
         }
+
+        // Success message
+        return redirect()->back()->with('success', 'Section updated successfully.');
+    } catch (\Exception $e) {
+        // Log the error
+        Log::error('Failed to update section: ' . $e->getMessage());
+
+        // Redirect back with error message
+        return redirect()->back()->with('error', 'Failed to update section. Please try again.');
     }
+}
+
     
 }

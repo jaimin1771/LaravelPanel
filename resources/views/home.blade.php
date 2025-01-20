@@ -26,44 +26,31 @@
                 </div>
             </div>
         </nav>
-
         <section class="flex flex-col md:flex-row items-center justify-center px-10 md:px-3 py-10 space-y-8 lg:space-y-0 lg:space-x-8">
             <div class="xl:w-[34%] sm:w-[40%] w-full">
-                <img src="{{ $data[0]->value }}" alt="Hero Image" class="w-full rounded-lg shadow-lg">
+                <img src="{{ asset('assets/home_page_img/'. $Section_img) }}" alt="Hero Image" class="w-full rounded-lg shadow-lg">
             </div>
             <div class="w-full md:w-[50%] flex flex-col md:items-start items-center space-y-4 m-0 md:m-[5%]">
-                @if($data->isEmpty())
-                    <p>No data found.</p>
-                @else
-                    <h1 class="text-3xl lg:text-4xl font-bold text-gray-800">{{ $data[1]->value }}</h1>
-                    <p class="text-lg text-gray-600">{{ $data[2]->value }}</p>
-                @endif
+                    <h1 class="text-3xl lg:text-4xl font-bold text-gray-800">{{ $Section_hedding }}</h1>
+                    <p class="text-lg text-gray-600">{{$Section_pera}}</p>
             </div>
         </section>
         <section class="flex flex-col md:flex-row items-center justify-center px-10 md:px-3 py-10 space-y-8 lg:space-y-0 lg:space-x-8">
             <div class="w-full md:w-[50%] flex flex-col md:items-start items-center space-y-4 m-0 md:m-[5%]">
-                @if($data->isEmpty())
-                    <p>No data found.</p>
-                @else
-                    <h1 class="text-3xl lg:text-4xl font-bold text-gray-800">{{ $data[4]->value }}</h1>
-                    <p class="text-lg text-gray-600">{{ $data[5]->value }}</p>
-                @endif
+                    <h1 class="text-3xl lg:text-4xl font-bold text-gray-800">{{ $Section_hedding_two}}</h1>
+                    <p class="text-lg text-gray-600">{{ $Section_pera_two }}</p>
             </div>
             <div class="xl:w-[34%] sm:w-[40%] w-full">
-                <img src="{{ $data[3]->value }}" alt="Hero Image" class="w-full rounded-lg shadow-lg">
+                <img src="{{ asset('assets/home_page_img/'. $Section_img_two) }}" alt="Hero Image" class="w-full rounded-lg shadow-lg">
             </div>
         </section>
         <section class="flex flex-col md:flex-row items-center justify-center px-10 md:px-3 py-10 space-y-8 lg:space-y-0 lg:space-x-8">
             <div class="xl:w-[34%] sm:w-[40%] w-full">
-                <img src="{{ $data[6]->value }}" alt="Hero Image" class="w-full rounded-lg shadow-lg">
+                <img src="{{ asset('assets/home_page_img/'. $Section_img_three) }}" alt="Hero Image" class="w-full rounded-lg shadow-lg">
             </div>
             <div class="w-full md:w-[50%] flex flex-col md:items-start items-center space-y-4 m-0 md:m-[5%]">
-                @if($data->isEmpty())
-                    <p>No data found.</p>
-                @else
-                    <h1 class="text-3xl lg:text-4xl font-bold text-gray-800">{{ $data[7]->value }}</h1>
-                    <p class="text-lg text-gray-600">{{ $data[8]->value }}</p>
-                @endif
+                    <h1 class="text-3xl lg:text-4xl font-bold text-gray-800">{{ $Section_hedding_three }}</h1>
+                    <p class="text-lg text-gray-600">{{ $Section_pera_three }}</p>
             </div>
         </section>
         

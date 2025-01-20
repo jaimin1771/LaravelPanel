@@ -31,7 +31,7 @@
                 <label for="section_name" class="block text-sm font-medium text-gray-700">Section Name</label>
                 <input type="text" id="section_name" name="section_name"
                     class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="{{ $data[2]->value }}" value="{{ $data[1]->section_name }}" readonly>
+                    placeholder="" value="{{ $Section_name }}" readonly>
             </div>
 
             <!-- Title -->
@@ -39,7 +39,7 @@
                 <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
                 <input type="text" id="lable" name="Section_hedding"
                     class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter title" value="{{ $data[1]->value }}">
+                    placeholder="Enter title" value="{{ $Section_hedding }}">
             </div>
 
             <!-- Content -->
@@ -47,7 +47,7 @@
                 <label for="content" class="block text-sm font-medium text-gray-700">Content</label>
                 <textarea id="details" name="Section_pera" rows="5"
                     class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter content">{{ $data[2]->value }}</textarea>
+                    placeholder="Enter content">{{ $Section_pera }}</textarea>
             </div>
 
             <!-- Picture -->
@@ -60,7 +60,7 @@
 
             <!-- Preview Area -->
             <h2 class="text-xl font-semibold text-gray-700 mb-4">Preview</h2>
-            <img id="img" class="w-full h-96 object-cover rounded-md border border-gray-300" src="{{ $data[0]->value }}"
+            <img id="img" class="w-full h-96 object-cover rounded-md border border-gray-300" src="{{ asset('assets/home_page_img/'. $Section_img) }}"
                 alt="Picture Preview">
             <div class="mt-4">
 
@@ -76,46 +76,48 @@
     </div>
 
     <div id="media" class="tab-content hidden">
-        <form id="updateForm" action="{{ route('data.update') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+        <form id="updateForm" action="{{ route('data.update')}}" method="POST" class="space-y-6">
             @csrf
-        
-            <!-- Section Name -->
+
             <div>
                 <label for="section_name" class="block text-sm font-medium text-gray-700">Section Name</label>
-                <input type="text" id="section_name" name="section_name"
+                <input type="text" id="section_name_two" name="section_name_two"
                     class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="{{ $data[8]->value }}" value="{{ $data[5]->section_name }}" readonly>
+                    placeholder="" value="{{ $Section_name_tow }}" readonly>
             </div>
-        
+
             <!-- Title -->
             <div>
                 <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
-                <input type="text" id="lable" name="Section_hedding"
+                <input type="text" id="lable" name="Section_hedding_two"
                     class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter title" value="{{ $data[7]->value }}">
+                    placeholder="Enter title" value="{{ $Section_hedding_two }}">
             </div>
-        
+
             <!-- Content -->
             <div>
                 <label for="content" class="block text-sm font-medium text-gray-700">Content</label>
-                <textarea id="details" name="Section_pera" rows="5"
+                <textarea id="details" name="Section_pera_two" rows="5"
                     class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter content">{{ $data[8]->value }}</textarea>
+                    placeholder="Enter content">{{ $Section_pera_two }}</textarea>
             </div>
-        
+
             <!-- Picture -->
             <div>
                 <label for="picture" class="block text-sm font-medium text-gray-700">Picture</label>
-                <input type="file" id="value" name="Section_img" accept="image/*"
+                <input type="file" id="value" name="Section_img_two" accept="image/*"
                     class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:border file:rounded-md file:border-blue-500 file:text-blue-500 hover:file:bg-blue-50"
                     onchange="previewImage()">
             </div>
-        
+
             <!-- Preview Area -->
             <h2 class="text-xl font-semibold text-gray-700 mb-4">Preview</h2>
-            <img id="img" class="w-full h-96 object-cover rounded-md border border-gray-300" src="{{ $data[6]->value }}"
+            <img id="img" class="w-full h-96 object-cover rounded-md border border-gray-300" src="{{ asset('assets/home_page_img/'. $Section_img_two) }}"
                 alt="Picture Preview">
-        
+            <div class="mt-4">
+
+            </div>
+
             <!-- Update Button -->
             <div class="flex justify-end">
                 <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
@@ -123,22 +125,6 @@
                 </button>
             </div>
         </form>
-        
-        <script>
-            function previewImage() {
-                const input = document.getElementById('value');
-                const img = document.getElementById('img');
-        
-                if (input.files && input.files[0]) {
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        img.src = e.target.result;
-                    };
-                    reader.readAsDataURL(input.files[0]);
-                }
-            }
-        </script>
-        
     </div>
 
     <div id="preview" class="tab-content hidden">
@@ -147,38 +133,38 @@
 
             <div>
                 <label for="section_name" class="block text-sm font-medium text-gray-700">Section Name</label>
-                <input type="text" id="section_name" name="section_name"
+                <input type="text" id="section_name_three" name="section_name_three"
                     class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder=""
-                    value="{{ $data[6]->section_name }}" readonly>
+                    value="{{ $Section_name_three }}" readonly>
             </div>
 
             <!-- Title -->
             <div>
                 <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
-                <input type="text" id="lable" name="lable"
+                <input type="text" id="Section_hedding_three" name="Section_hedding_three"
                     class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter title" value="{{ $data[7]->value }}">
+                    placeholder="Enter title" value="{{ $Section_hedding_three }}">
             </div>
 
             <!-- Content -->
             <div>
                 <label for="content" class="block text-sm font-medium text-gray-700">Content</label>
-                <textarea id="details" name="details" rows="5"
+                <textarea id="Section_pera_three" name="Section_pera_three" rows="5"
                     class="mt-1 p-2 w-full border rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter content">{{ $data[8]->value }}</textarea>
+                    placeholder="Enter content">{{ $Section_pera_three }}</textarea>
             </div>
 
             <!-- Picture -->
             <div>
                 <label for="picture" class="block text-sm font-medium text-gray-700">Picture</label>
-                <input type="file" id="value" name="value" accept="image/*"
+                <input type="file" id="Section_img_three" name="Section_img_three" accept="image/*"
                     class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:border file:rounded-md file:border-blue-500 file:text-blue-500 hover:file:bg-blue-50"
                     onchange="previewImage()">
             </div>
 
             <!-- Preview Area -->
             <h2 class="text-xl font-semibold text-gray-700 mb-4">Preview</h2>
-            <img id="img" class="w-full h-96 object-cover rounded-md border border-gray-300" src="{{ $data[6]->value }}"
+            <img id="img" class="w-full h-96 object-cover rounded-md border border-gray-300" src="{{ asset('assets/home_page_img/'. $Section_img_two) }}"
                 alt="Picture Preview">
             <div class="mt-4">
 
